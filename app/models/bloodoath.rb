@@ -15,4 +15,11 @@ class Bloodoath
 	@@all
   end 
 
+  def self.first_oath
+   #use find to get the first follower?
+      self.all.find{|oath| oath.follower}
+  end 
+
 end
+# * `BloodOath.first_oath`
+#   * returns the `Follower` instance for the follower that made the very first blood oath

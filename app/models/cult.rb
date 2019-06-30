@@ -80,10 +80,25 @@ class Cult
   # `Cult.least_popular`
   # * returns the `Cult` instance who has the least number of followers :(
 
-  # def self.least_popular
-  #   #need to sum then min_by and count?
-  #   Cult.
-  # end 
+  def cult_oaths
+    Bloodoath.all.map{|oath| oath.cult}
+  end 
+
+  def self.least_popular
+  #   #need to go through bloodoath to get all instances of cult as a seperate method first.
+  # then need to iterate through all the cults and min_by, count?
+    self.cult_oaths.min_by{|cult| cult_oaths.count(cult)}
+   end 
+
+  #  * `Cult.most_common_location`
+  # * returns a `String` that is the location with the most cults
+
+  def self.most_common_location
+    #use the cult_oaths method for all cults.
+    #will also need to grab the most common occurring location between the cults. so 
+    #will then need to max_by and count?
+    self.cult_oaths.max_by{|oath| cult_oath.location.count(oath)}
+  end 
 end 
 
 
