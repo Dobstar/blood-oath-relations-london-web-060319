@@ -65,7 +65,7 @@ class Cult
     #just need to iterate through and grab the age then sum and count
    
     age = all_followers.map{|follower| follower.age}
-    age.sum / age.count
+    age.sum / age.count.to_f
   end 
 # * `Cult#my_followers_mottos`
 #   * prints out all of the mottos for this cult's followers
@@ -79,7 +79,7 @@ class Cult
 
   # `Cult.least_popular`
   # * returns the `Cult` instance who has the least number of followers :(
-    
+
   # def self.least_popular
   #   #need to sum then min_by and count?
   #   Cult.
