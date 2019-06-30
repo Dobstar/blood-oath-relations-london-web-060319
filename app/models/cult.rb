@@ -35,7 +35,7 @@ class Cult
     #count all the followers. return the sum.
     # cult = Bloodoath.all.select{|bo| bo.cult == self}
     # followers = cult.map{|cult| cult.follower}
-    all_followers.sum
+    all_followers.length
   end
  
 
