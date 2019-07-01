@@ -1,10 +1,10 @@
 class Bloodoath
 
-   attr_reader :cult, :follower, :initiation_date
+   attr_accessor :cult, :follower, :initiation_date
 
 	@@all = []
 	
-   def initialize(initiation_date:, follower:, cult:)
+   def initialize(follower:, cult:)
       @initiation_date = Time.now.strftime("%Y/%m/%d")
       @follower = follower
       @cult = cult
@@ -17,7 +17,7 @@ class Bloodoath
 
   def self.first_oath
    #use find to get the first follower?
-      self.all.find{|oath| oath.follower}
+      Bloodoath.all[0]
   end 
 
 end

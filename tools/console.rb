@@ -15,10 +15,10 @@ phoenix = Cult.new(name:"Order of the Phoenix", location:"Hogwarts", founding_ye
 pulp_fiction = Cult.new(name:"Pulp Fiction", location:"Brooklyn", founding_year: 2001, slogan:"Hakuna matata")
 
 #bloodoath
-b1 = Bloodoath.new(initiation_date:'1993-09-20', follower:marshall, cult:the_order)
-b2 = Bloodoath.new(initiation_date:'1993-09-20', follower:lily, cult:the_order)
-b3 = Bloodoath.new(initiation_date:'2001-08-10', follower:ted, cult:the_order)
-
+b1 = Bloodoath.new(follower:marshall, cult:the_order)
+b2 = Bloodoath.new(follower:lily, cult:the_order)
+b3 = Bloodoath.new(follower:ted, cult:the_order)
+b4 = Bloodoath.new(follower:lily, cult:phoenix)
 # Insert code here to run before hitting the binding.pry
 # This is a convenient place to define variables and/or set up new object instances,
 # so they will be available to test and play around with in your console

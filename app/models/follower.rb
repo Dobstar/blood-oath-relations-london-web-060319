@@ -1,8 +1,7 @@
 class Follower
   
-    attr_reader :name, :age, :life_motto
-	attr_writer
-	attr_accessor
+    attr_accessor :name, :age, :life_motto
+	
 
 	@@all = []
 	
@@ -27,8 +26,8 @@ class Follower
   # * `Follower#join_cult`
 #   * takes in an argument of a `Cult` instance and adds this follower to the cult's list of followers
 
-    def join_cult  (initiation_date:, follower:, cult:)
-    Bloodoath.new(initiation_date: initiation_date, follower: self, cult: cult)
+    def join_cult  (cult:)
+    Bloodoath.new(follower: self, cult: cult)
     end 
 
 # * `Follower.of_a_certain_age`
@@ -51,14 +50,20 @@ class Follower
 
     # * `Follower.most_active`
 #   * returns the `Follower` instance who has joined the most cults
-        def all_followers
-           Bloodoath.all.map{|oath| oath.follower}
-        end 
+    # def all_followers
+    #     Bloodoath.all.map{|oath| oath.follower}
+    # end 
 
      def self.most_active
     #     #get all followers first in another method.
-         self.all_followers.max_by{|follower| all_followers.count(follower)}
+        followers = Bloodoath.all.map{|oath| oath.follower}
+        followers.max_by{|follower| follower.cults.length}
      end 
+
+      def self.top_ten
+        followers = Bloodoath.all.map{|oath| oath.follower}
+        followers.max_by(10){|follower| follower.name}
+      end 
 end 
 
 

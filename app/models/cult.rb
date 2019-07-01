@@ -1,7 +1,7 @@
 class Cult
 
 
-  attr_reader :name, :location, :founding_year, :slogan
+  attr_accessor :name, :location, :founding_year, :slogan
 
 	@@all = []
 	
@@ -18,8 +18,8 @@ class Cult
   end 
   # `Cult#recruit_follower`
 # * takes in an argument of a `Follower` instance and adds them to this cult's list of followers
-  def recruit_follower(initiation_date:, follower:, cult:)
-    Bloodoath.new(initiation_date: initiation_date, follower: follower, cult: self)
+  def recruit_follower(follower:)
+    Bloodoath.new( follower: follower, cult: self)
   end 
 
   # * `Cult#cult_population`
@@ -32,7 +32,7 @@ class Cult
 
   def cult_population
     #get correct followers for this cult
-    #count all the followers. return the sum.
+    #count all the followers.
     # cult = Bloodoath.all.select{|bo| bo.cult == self}
     # followers = cult.map{|cult| cult.follower}
     all_followers.length
@@ -73,22 +73,23 @@ class Cult
     #get all followers. (use that method again)
     #grab the follower's life_mottos
     #print them out of the array
-    mottos = all_followers.map{|follower|follower.life_motto}
+    mottos = self.all_followers.map{|follower|follower.life_motto}
     mottos.map { |motto| "'" + motto.to_s + "'" }.join(",")
   end 
+
+  def cult_oaths
+    Bloodoath.all.map{|oath| oath.cult}
+   end 
 
   # `Cult.least_popular`
   # * returns the `Cult` instance who has the least number of followers :(
 
-  def cult_oaths
-    Bloodoath.all.map{|oath| oath.cult}
-  end 
+  #  def self.least_popular
+  # # #   #need to go through bloodoath to get all instances of cult as a seperate method first.
+  # # # then need to iterate through all the cults and min_by, count?
+  #    Cult.all.min_by{|follower| all_followers.count(follower)}
+  #   end 
 
-  def self.least_popular
-  #   #need to go through bloodoath to get all instances of cult as a seperate method first.
-  # then need to iterate through all the cults and min_by, count?
-    self.cult_oaths.min_by{|cult| cult_oaths.count(cult)}
-   end 
 
   #  * `Cult.most_common_location`
   # * returns a `String` that is the location with the most cults
@@ -97,7 +98,8 @@ class Cult
     #use the cult_oaths method for all cults.
     #will also need to grab the most common occurring location between the cults. so 
     #will then need to max_by and count?
-    self.cult_oaths.max_by{|oath| cult_oath.location.count(oath)}
+    cult_locations = Cult.all.map{|cult| cult.location}
+    cult_locations.max_by{|location| cult_locations.count(location)}
   end 
 end 
 
